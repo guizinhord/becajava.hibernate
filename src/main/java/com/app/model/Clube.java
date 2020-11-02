@@ -22,6 +22,11 @@ public class Clube {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "Clube [id=" + id + ", nome=" + nome + ", pontos=" + pontos + "]";
+	}
+
 	public String getNome() {
 		return nome;
 	}
