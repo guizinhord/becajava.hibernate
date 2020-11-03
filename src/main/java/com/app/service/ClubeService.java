@@ -5,31 +5,23 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 import com.app.model.Clube;
-import com.app.model.Partida;
 import com.app.repository.ClubeRepository;
-import com.app.repository.PartidaRepository;
+
 
 @Service
 public class ClubeService {
-
 	private Boolean system = true;
-	// Estancia dependencia interface crud
+	
 	private final ClubeRepository clubeRepository;
-	private final PartidaRepository partidaRepository;
-
-	// Construtor para Estancia dependencia interface crud
-	public ClubeService(ClubeRepository clubeRepository, PartidaRepository partidaRepository) {
+	
+	public ClubeService(ClubeRepository clubeRepository) {
 		this.clubeRepository = clubeRepository;
-		this.partidaRepository = partidaRepository;
 	}
 
 	public void inicial(Scanner leitor) {
-		System.out.println("Qual tabela: \n 1 - Clube \n 2 - Partida");
-int opcao = leitor.nextInt();
-		if (opcao == 1) {
-
+		
 			while (system) {
-				System.out.println("===Tabela Clube===");
+				System.out.println("\n===Tabela Clube===\n");
 				System.out.println("0 - Sair");
 				System.out.println("1 - Novo nome do Time");
 				System.out.println("2 - Atualizar nome do Time");
@@ -61,27 +53,7 @@ int opcao = leitor.nextInt();
 				}
 			}
 			
-		} else if (opcao == 2) {
-			System.out.println("===Tabela Partida===");
-			System.out.println("Qual acao voce quer executar");
-			System.out.println("0 - Sair");
-			System.out.println("1 - Visualizar tabela");
-
-			int action = leitor.nextInt();
-			while (system) {
-				switch (action) {
-				case 1:
-					visualizarPartida();
-					system = false;
-					break;
-					
-				default:
-					system = false;
-					break;
-				}
-			}
-		}
-	}
+		} 
 
 	private void salvar(Scanner leitor) {
 		System.out.println("Adicionar nome do time:");
@@ -115,11 +87,5 @@ int opcao = leitor.nextInt();
 		Long id = leitor.nextLong();
 		clubeRepository.deleteById(id);
 		System.out.println("Deletado! ");
-	}
-
-	// TABLE PARTIDA
-	private void visualizarPartida() {
-		Iterable<Partida> partidas = partidaRepository.findAll();
-		partidas.forEach(partida -> System.out.println(partida));
 	}
 }

@@ -8,4 +8,5 @@ import com.app.model.Partida;
 @Repository
 public interface PartidaRepository extends CrudRepository<Partida, Long>{
 
+
 }
